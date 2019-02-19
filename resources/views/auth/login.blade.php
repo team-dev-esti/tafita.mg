@@ -64,6 +64,10 @@
                                 @endif
                             </div>
                         </div>
+
+                        <p>
+                            <a class="btn btn-success" href="{{ route('google.login') }}">Se connecter avec google</a>
+                        </p>
                     </form>
                 </div>
             </div>
