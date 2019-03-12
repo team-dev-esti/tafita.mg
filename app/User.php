@@ -33,12 +33,17 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo('App\Role');
     }
 
+    public function moocs()
+    {
+        return $this->hasMany('App\Mooc');
+    }
+
     public function isStudent()
     {
-        return $this->role === 'student';
+        return $this->role->name === 'student';
     }
     public function isContrib()
     {
-        return $this->role === 'contrib';
+        return $this->role->name === 'contrib';
     }
 }
