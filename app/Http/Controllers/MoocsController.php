@@ -11,17 +11,26 @@ class MoocsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('student');
+        $this->middleware('contrib');
     }
 
     public function index()
     {
-        return view('moocs.index');
+        $moocs = Mooc::all();
+        return view('moocs.index',compact('moocs'));
+    }
+
+    public function show($mooc)
+    {
+        $mooc = Mooc::find($mooc);
+        return view('moocs.show',compact('mooc'));
     }
 
     public function create()
     {
-        return view('moocs.create');
+        $mooc = new Mooc();
+        $page = 'create';
+        return view('moocs.create',compact('mooc','page'));
     }
 
     public function store(MoocsRequest $request)
@@ -29,5 +38,40 @@ class MoocsController extends Controller
         $mooc = array_merge($request->all(),['user_id'=>Auth::id()]);
         Mooc::create($mooc);
         return redirect()->back()->with(['success'=>'Mooc créer']);
+    }
+    public function edit($mooc)
+    {
+        $user = Auth::user();
+        $mooc = Mooc::find($mooc);
+        $page = 'update';
+        if ($user->can('update', $mooc)) {
+            return view('moocs.create',compact('mooc','page'));
+        } else {
+            return abort(401);
+        }    
+    }
+
+    public function update(MoocsRequest $request,$mooc)
+    {
+        $user = Auth::user();
+        $mooc = Mooc::find($mooc);
+        if ($user->can('update', $mooc)) {
+            $mooc->update($request->all());
+            return redirect()->back()->with(['success'=>'Article mise à jour']);
+        } else {
+            return abort(401);
+        }  
+        
+    }
+
+    public function destroy($mooc){
+        $mooc = Mooc::find($mooc);
+        $user = Auth::user();
+        if ($user->can('delete', $mooc)) {
+            $mooc->destroy($mooc);
+            return redirect()->back()->with(['success'=>'Mooc supprimer']);
+        } else {
+            return abort(401);
+        }  
     }
 }

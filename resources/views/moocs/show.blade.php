@@ -6,8 +6,8 @@
         <div class="col-md-8">
             <div class="card">
                 @include('partials.message')
-                @include('moocs.form')
-            </div>
+                <h1>{{ $mooc->title }}</h1>
+                <p>{{ $mooc->resume }}</p>
         </div>
     </div>
 </div>
