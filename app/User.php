@@ -46,4 +46,8 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->role->name === 'contrib';
     }
+    public function files()
+    {
+        return $this->belongsToMany('App\File')->using('App\FileUser');
+    }
 }

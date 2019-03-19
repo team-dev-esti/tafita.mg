@@ -14,7 +14,10 @@ class AddAgeGenderAvatarDescrBirthToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->date('birth')->nullable();
+            $table->integer('gender')->unsigned()->nullable();
+            $table->string('avatar');
+            $table->longText('descr')->nullable();
         });
     }
 
@@ -26,7 +29,7 @@ class AddAgeGenderAvatarDescrBirthToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropColumn(['birth','gender','avatar','descr']);
         });
     }
 }

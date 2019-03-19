@@ -18,7 +18,7 @@ Route::get('/', function () {
 Auth::routes(['verify'=>true]);
 Route::get('login/google', 'Auth\LoginController@redirectToProvider')->name('google.login');
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
-
+Route::put('user/update/{user}','UsersController@update')->name('user.update');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
 Route::resource('mooc','MoocsController')->middleware('verified');
