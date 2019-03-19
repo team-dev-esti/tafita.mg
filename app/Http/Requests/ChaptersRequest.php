@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MoocsRequest extends FormRequest
+class ChaptersRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,7 @@ class MoocsRequest extends FormRequest
     {
         return [
             'title'=>'required',
-            'resume'=>'required',
-            'thumbnail'=>'required|image'
+            'content'=>'required'
         ];
     }
 }

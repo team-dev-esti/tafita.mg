@@ -22,3 +22,7 @@ Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
 Route::resource('mooc','MoocsController')->middleware('verified');
+
+Route::group(['prefix'=>'{mooc}'],function(){
+    Route::resource('chapter','ChaptersController')->middleware('verified');
+});

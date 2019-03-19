@@ -6,11 +6,8 @@
         <div class="col-md-8">
             <div class="card">
                 @include('partials.message')
-                @can('update',$mooc)
-                <a href="{{route('chapter.create',$mooc)}}" class="btn btn-success">Ajouter un chapitre</a>
-                @endcan
-                <h1>{{ $mooc->title }}</h1>
-                <p>{{ $mooc->resume }}</p>
+                <h3>Nouveau chapitre</h3>
+                @include('chapters.form')
             </div>
         </div>
     </div>
