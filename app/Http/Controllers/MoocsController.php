@@ -35,7 +35,6 @@ class MoocsController extends Controller
 
     public function store(MoocsRequest $request)
     {
-        dd($request);
         $mooc = array_merge($request->all(),['user_id'=>Auth::id()]);
         $mooc = Mooc::create($mooc);
         return redirect()->route('chapter.create',$mooc)->with(['success'=>'Mooc créer']);

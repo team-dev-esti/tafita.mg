@@ -16,7 +16,7 @@ class AddAgeGenderAvatarDescrBirthToUsers extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->date('birth')->nullable();
             $table->integer('gender')->unsigned()->nullable();
-            $table->string('avatar');
+            $table->string('avatar')->nullable();
             $table->longText('descr')->nullable();
         });
     }

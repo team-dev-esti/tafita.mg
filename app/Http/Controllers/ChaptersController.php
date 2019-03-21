@@ -66,9 +66,11 @@ class ChaptersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($mooc,$chapter)
     {
-        //
+       $mooc = Mooc::find($mooc);
+       $chapter = $mooc->chapters->where('id',$chapter)->first();
+       return view('chapters.show',compact('chapter','mooc'));
     }
 
     /**

@@ -13,7 +13,7 @@
 <input type="text" name="title" value="{{ $chapter->title }}">
 <label for="">Url video</label>
 <input type="text" name="video" value="{{ $chapter->video }}">
-<label for="">Contenue</label>
-<textarea name="content" id="" cols="30" rows="10" >{{ $chapter->content }}</textarea><br>
+<label for="">Contenue</label><br>
+<textarea name="content" id="editor" >{{ $chapter->content }}</textarea><br>
 <button type="submit">Envoyer</button>
 {!! Form::close() !!}
