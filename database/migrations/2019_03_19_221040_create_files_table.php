@@ -16,12 +16,12 @@ class CreateFilesTable extends Migration
         Schema::create('files', function (Blueprint $table) {
             $table->increments('id');
             $table->string('label');
+            $table->string('type');
         });
 
         Schema::create('file_user', function (Blueprint $table) {
             $table->increments('id');
             $table->string('file_dir');
-            $table->string('label');
             $table->integer('user_id')->unsigned()->index();
             $table->integer('file_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users');

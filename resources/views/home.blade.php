@@ -15,7 +15,16 @@
                     @endif
                     @include('partials.message')
                     <h3>Mes dossiers</h3>
-
+                    {{ Form::open(['route'=>['file.store'],'files' => true])}}
+                    @foreach ($files as $file)
+                        @if($file->type === 'image' || $file->type === 'pdf' )
+                        <label for="#">{{ $file->label }}</label>
+                        {{ Form::file($file->type.'('.$file->id.')') }} <br>
+                        @endif
+                    @endforeach
+                    {{ Form::file('test') }} <br>
+                    <button type="submit">Envoyer</button>
+                    {{ Form::close()}}
                     <h3>Mes mooc</h3>
 
                     <h3>Favoris</h3>

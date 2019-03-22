@@ -26,3 +26,5 @@ Route::resource('mooc','MoocsController')->middleware('verified');
 Route::group(['prefix'=>'{mooc}'],function(){
     Route::resource('chapter','ChaptersController')->middleware('verified');
 });
+
+Route::post('/home/file','HomeController@storefile')->name('file.store')->middleware('verified');

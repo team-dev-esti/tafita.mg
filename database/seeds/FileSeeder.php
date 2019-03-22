@@ -13,16 +13,20 @@ class FileSeeder extends Seeder
     public function run()
     {
         DB::table('files')->insert([[
-            'label' => 'CIN'
+            'label' => 'CIN',
+            'type' => 'image'
         ],
         [
-            'label' => 'Lettre de motivation'
+            'label' => 'Lettre de motivation',
+            'type' => 'pdf'
         ],
         [
-            'label' => 'CV'
+            'label' => 'CV',
+            'type' => 'pdf'
         ],
         [
-            'label' => 'Relever de note'
+            'label' => 'Relever de note',
+            'type' => 'pdf'
         ]]);
 
     }

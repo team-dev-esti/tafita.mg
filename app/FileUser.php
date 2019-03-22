@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class FileUser extends Pivot
 {
-    //
+    protected $fillable = ['file_dir','file_id','user_id'];
 }
