@@ -1,13 +1,16 @@
 <template>
     <div>
-       <create-event></create-event>
+        <ul>
+            <li><router-link to="/home">Creer un concour</router-link></li>
+            <li><router-link to="/home/events">Evenement en cours</router-link></li>
+        </ul>
+        
+        <router-view></router-view>
     </div>
 </template>
 <script>
-import CreateEvent from './CreateEvent'
+import router from '../routes.js'
 export default {
-    components: {
-        CreateEvent
-    }
+    router
 }
 </script>
