@@ -10,4 +10,9 @@ class File extends Model
     {
         return $this->belongsToMany('App\User')->using('App\FileUser');
     }
+
+    public function events()
+    {
+        return $this->belongsToMany('App\Event')->using('App\EventFile');
+    }
 }

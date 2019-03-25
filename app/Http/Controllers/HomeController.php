@@ -28,8 +28,13 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $files = File::all();
-        return view('home',compact('user','files'));
+       if($user->isInstitute()){
+            return view('home.institute',compact('user'));
+       }
+       elseif($user->isStudent()){
+            $files = File::all();
+            return view('home.student',compact('user','files'));
+       }
     }
 
     public function storefile(FileUserRequest $request)

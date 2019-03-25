@@ -27,4 +27,8 @@ class UsersController extends Controller
             abort(403);
         }
     }
+    public function current(){
+        $user = Auth::id();
+        return response()->json($user);
+    }
 }
