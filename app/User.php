@@ -54,4 +54,8 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany('App\File')->using('App\FileUser');
     }
+    public function events()
+    {
+        return $this->hasMany('App\Events');
+    }
 }

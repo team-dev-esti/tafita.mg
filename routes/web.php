@@ -21,6 +21,7 @@ Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback
 Route::put('user/update/{user}','UsersController@update')->name('user.update');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 Route::get('/current', 'UsersController@current');
+Route::resource('events','EventsController');
 
 Route::resource('mooc','MoocsController')->middleware('verified');
 
@@ -29,3 +30,4 @@ Route::group(['prefix'=>'{mooc}'],function(){
 });
 
 Route::post('/home/file','HomeController@storefile')->name('file.store')->middleware('verified');
+

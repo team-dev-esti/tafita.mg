@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use App\Event;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class EventsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('institute')->except(['index','store','show']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +20,12 @@ class EventsController extends Controller
      */
     public function index(Request $request)
     {
-        $events = Event::latest()->paginate(25);
+        $events = Event::with('user')->where([
+            ['start_on', '<=', Carbon::now()],
+            ['finish_on', '>=', Carbon::now()]
+        ])->latest()->get();
 
-        return response()->json($events);
+        return view('events.index',compact('events'));
     }
 
     /**
@@ -35,6 +43,7 @@ class EventsController extends Controller
             'finish_on'=>$request->myEvent->finish_on,
         */
         $data = [
+            'title'=>$request->title,
             'description'=>$request->description,
             'start_on'=>$request->start_on,
             'finish_on'=>$request->finish_on,
@@ -61,8 +70,9 @@ class EventsController extends Controller
     public function show($id)
     {
         $event = Event::findOrFail($id);
-
-        return response()->json($event);
+        $incomplete = $event->userFilesNotFound(Auth::user());
+        $notFoundFiles = $event->files->find($incomplete);
+        return view('events.show',compact('event','notFoundFiles'));
     }
 
     /**

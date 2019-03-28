@@ -11,7 +11,7 @@ class MoocsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('contrib');
+        $this->middleware('auth')->except(['index','show']);
     }
 
     public function index()

@@ -1787,6 +1787,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1795,6 +1797,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       currentUser: '',
       multiple: true,
       myEvent: {
+        title: '',
         description: '',
         start_on: '',
         finish_on: '',
@@ -36936,16 +36939,39 @@ var render = function() {
         on: {
           submit: function($event) {
             $event.preventDefault()
-            return _vm.createEvent()
+            return _vm.createEvent($event)
           }
         }
       },
       [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Titre")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.myEvent.title,
+              expression: "myEvent.title"
+            }
+          ],
+          attrs: { type: "text", name: "title", placeholder: "Titre" },
+          domProps: { value: _vm.myEvent.title },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.myEvent, "title", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
         _c("label", { attrs: { for: "" } }, [
           _vm._v("Description du concours")
         ]),
         _vm._v(" "),
-        _c("input", {
+        _c("textarea", {
           directives: [
             {
               name: "model",
@@ -36954,7 +36980,7 @@ var render = function() {
               expression: "myEvent.description"
             }
           ],
-          attrs: { type: "text", name: "description" },
+          attrs: { name: "description", id: "", cols: "30", rows: "10" },
           domProps: { value: _vm.myEvent.description },
           on: {
             input: function($event) {

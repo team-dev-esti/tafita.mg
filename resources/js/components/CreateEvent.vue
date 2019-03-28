@@ -1,9 +1,11 @@
 <template>
     <div>
         <h1>Creer un concours</h1>
-        <form action="#" method="post" @submit.prevent="createEvent()">
+        <form action="#" method="post" @submit.prevent="createEvent">
+            <label for="">Titre</label>
+            <input type="text" name="title" v-model="myEvent.title" placeholder="Titre">
             <label for="">Description du concours</label>
-            <input type="text" name="description" v-model="myEvent.description">
+            <textarea name="description" v-model="myEvent.description" id="" cols="30" rows="10"></textarea>
             <label for="">date debut du depot dossier</label>
             <input type="date" name="start_on" v-model="myEvent.start_on">
             <label for="">date fin du depot dossier</label>
@@ -25,6 +27,7 @@ export default {
             currentUser: '',
             multiple: true,
             myEvent: {
+                    title: '',
                     description: '',
                     start_on: '',
                     finish_on: '',
