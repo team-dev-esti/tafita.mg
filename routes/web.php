@@ -21,8 +21,8 @@ Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback
 Route::put('user/update/{user}','UsersController@update')->name('user.update');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 Route::get('/current', 'UsersController@current');
-Route::resource('events','EventsController');
-
+Route::resource('events','EventsController')->only(['index','show']);
+Route::post('events/participate','EventsController@participate')->name('event.participate');
 Route::resource('mooc','MoocsController')->middleware('verified');
 
 Route::group(['prefix'=>'{mooc}'],function(){
@@ -30,4 +30,8 @@ Route::group(['prefix'=>'{mooc}'],function(){
 });
 
 Route::post('/home/file','HomeController@storefile')->name('file.store')->middleware('verified');
+Route::get('/home/file/edit','HomeController@editfile')->name('file.edit')->middleware('verified');
+Route::put('/home/file/update','HomeController@updatefile')->name('file.update')->middleware('verified');
+Route::get('/home/file/download/{user}/{file}','FilesController@show')->name('file.show')->middleware('verified');
+//Route::post('/home/file/complete/{event}','HomeController@copletefile')->name('file.store')->middleware('verified');
 

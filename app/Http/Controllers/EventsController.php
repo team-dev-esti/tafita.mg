@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\EventUser;
 
 class EventsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('institute')->except(['index','store','show']);
+        $this->middleware('institute')->except(['index','store','show','participate']);
+        $this->middleware('student')->only('participate');
     }
     /**
      * Display a listing of the resource.
@@ -104,5 +107,29 @@ class EventsController extends Controller
         Event::destroy($id);
 
         return response()->json(null, 204);
+    }
+
+    /**
+     * Partcipate to evetn
+     *
+     * @param  int  $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function participate(Request $request)
+    {
+        $user = Auth::id();
+        $u = new EventUser();
+        $u->user_id = $user;
+        $u->event_id = $request->event;
+        $first = $u->where(["user_id"=>$user,"event_id"=>$request->event])->get();
+        if(count($first) != null){
+            return redirect()->back()->with(["success"=>"Votre candidature est déja envoyer"]);
+        }
+        else{
+            $u->save();
+            return redirect()->back()->with(["success"=>"Votre candidature est envoyer a cette evenement, vous recevrez un mail pour avoir les reponses de l'organisateur"]);
+        }
+        
     }
 }

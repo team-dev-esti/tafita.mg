@@ -17,21 +17,26 @@ class Event extends Model
     {
         return $this->belongsTo('App\User');
     }
-
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
+    }
     public function userFilesNotFound($user)
     {
         $eventFiles = [];
         $userFiles = [];
         $filesNotFound = [];
-        foreach ($this->files as $eventFile) {
-            array_push($eventFiles,$eventFile->id);
-        }
-        foreach ($user->files as $userFile) {
-            array_push($userFiles,$userFile->id);
-        }
-        for ($i=0; $i < count($eventFiles); $i++) { 
-            if(!in_array($eventFiles[$i],$userFiles)){
-                array_push($filesNotFound,$eventFiles[$i]);
+        if($user!=null){        
+            foreach ($this->files as $eventFile) {
+                array_push($eventFiles,$eventFile->id);
+            }
+            foreach ($user->files as $userFile) {
+                array_push($userFiles,$userFile->id);
+            }
+            for ($i=0; $i < count($eventFiles); $i++) { 
+                if(!in_array($eventFiles[$i],$userFiles)){
+                    array_push($filesNotFound,$eventFiles[$i]);
+                }
             }
         }
         //dd($filesNotFound);
