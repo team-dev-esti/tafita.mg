@@ -38,6 +38,15 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Mooc');
     }
 
+    public function files()
+    {
+        return $this->belongsToMany('App\File')->using('App\FileUser');
+    }
+    public function events()
+    {
+        return $this->hasMany('App\Events');
+    }
+
     public function isStudent()
     {
         return $this->role->name === 'student';
@@ -46,16 +55,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->role->name === 'institute';
     }
+
     public function isAdmin()
     {
         return $this->role->name === 'admin';
-    }
-    public function files()
-    {
-        return $this->belongsToMany('App\File')->using('App\FileUser');
-    }
-    public function events()
-    {
-        return $this->hasMany('App\Events');
     }
 }

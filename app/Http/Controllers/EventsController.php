@@ -32,38 +32,6 @@ class EventsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        /*
-        'description'=>$request->myEvent->description,
-            'start_on'=>$request->myEvent->start_on,
-            'finish_on'=>$request->myEvent->finish_on,
-        */
-        $data = [
-            'title'=>$request->title,
-            'description'=>$request->description,
-            'start_on'=>$request->start_on,
-            'finish_on'=>$request->finish_on,
-            'user_id'=>$request->user_id,
-            'created_at'=>Carbon::now(),
-            'updated_at'=>Carbon::now()
-        ];
-        
-        $event = Event::create($data);
-        
-        $event->files()->attach($request->files_id);
- 
-        
-        return response()->json($event, 201);
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
