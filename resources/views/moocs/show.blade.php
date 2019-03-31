@@ -32,6 +32,10 @@
                                     <div class="content article-body">
                                         <p>{{$mooc->resume}}</p>
                                         <h3>Les Chapitres</h3>
+                                        @can('update',$mooc)
+                                             
+                                                <a class="button is-succes" href="{{route('chapter.create',$mooc)}}">Ajouter nouveau chapitre</a>
+                                                @endcan
                                         <ol>               
                                         @foreach ($mooc->chapters as $chapter)
                                             <li>

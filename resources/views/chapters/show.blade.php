@@ -11,6 +11,7 @@
                     </div>
                 </div>
             </section>
+       
         <div class="container">
                 <section class="articles">
                         <div class="column is-8 is-offset-2">
@@ -24,8 +25,10 @@
                                         <div class="media-content has-text-centered">
                                             
                                                 @can('update',$mooc)
-                                                <a href="{{route('chapter.edit',[$mooc,$chapter])}}" class="btn btn-success">Modifier ce chapitre</a>
+                                                <a class="button is-info" href="{{route('chapter.edit',[$mooc,$chapter])}}" class="btn btn-success">Modifier ce chapitre</a>
+                                                <a class="button is-succes" href="{{route('chapter.create',$mooc)}}">Ajouter nouveau chapitre</a>
                                                 @endcan
+                                                
                                         </div>
                                     </div>
                                     <div class="content article-body">

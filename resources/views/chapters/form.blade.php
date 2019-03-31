@@ -25,7 +25,7 @@
         </div>
 </div>
         <div class="field"> 
-            <div class="control">
+            <div class="control editor">
                 <label for="">Contenue</label><br>
                 <textarea name="content" id="editor" >{{ $chapter->content }}</textarea><br>
             </div>

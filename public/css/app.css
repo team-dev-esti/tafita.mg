@@ -12576,3 +12576,20 @@ footer li:before {
   border-bottom: 2px solid #ececec;
 }
 
+.editor h1 {
+  font-size: 30px;
+}
+
+.editor h2 {
+  font-size: 25px;
+}
+
+.editor h3 {
+  font-size: 24px;
+}
+
+.editor li {
+  margin: 12px;
+  list-style-type: circle;
+}
+
