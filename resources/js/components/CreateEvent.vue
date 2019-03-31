@@ -1,25 +1,42 @@
 <template>
     <div>
-        <h1>Creer un concours</h1>
+        <h3 class="title">Creer un concours</h3>
         <form action="#" method="post" @submit.prevent="createEvent">
-            <label for="">Titre</label>
-            <input type="text" name="title" v-model="myEvent.title" placeholder="Titre">
-            <label for="">Description du concours</label>
-            <textarea name="description" v-model="myEvent.description" id="" cols="30" rows="10"></textarea>
-            <label for="">date debut du depot dossier</label>
-            <input type="date" name="start_on" v-model="myEvent.start_on">
-            <label for="">date fin du depot dossier</label>
-            <input type="date" name="finish_on" v-model="myEvent.finish_on">
-            <label for="">Les dossier</label>
-            <select multiple="true" v-model="myEvent.files_id">
-                <option v-for="file in files_id" :value="file.id">{{file.label}}</option>
-            </select>
-            <button type="submit">Envoyer</button>
+            <div class="flield">
+                <label for="">Titre</label>
+                <input type="text" class="input" name="title" v-model="myEvent.title" placeholder="Titre">
+            </div>
+            <div class="field">
+                <label for="">Description du concours</label>
+                <textarea name="description" class="textarea" v-model="myEvent.description" id="" cols="30" rows="10"></textarea>
+            </div>
+            <div class="flied">
+                <div class="columns">
+                    <div class="column">
+                        <label for="">date debut du depot dossier</label>
+                        <input type="date" name="start_on" v-model="myEvent.start_on">
+                    </div>
+                    <div class="column">
+                        <label for="">date fin du depot dossier</label>
+                        <input type="date" name="finish_on" v-model="myEvent.finish_on">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flied">
+                <label for="">Les dossier</label>
+                <select multiple="true" v-model="myEvent.files_id">
+                    <option v-for="file in files_id" :value="file.id">{{file.label}}</option>
+                </select>
+            </div>
+            
+            <button class="button is-info" type="submit">Envoyer</button>
         </form>
     </div>
 </template>
 <script>
 import axios from 'axios'
+import swal from 'sweetalert';
 export default {
     data() {
         return {
@@ -63,8 +80,14 @@ export default {
                 ...this.myEvent
             }
             console.log(data)
-            axios.post('/api/events/create', data).then(function (response) {
-                console.log(response);
+            axios.post('/api/events/create', data).then( (response) => {
+                this.myEvent.title = ''
+                this.myEvent.description = ''
+                this.myEvent.start_on = ''
+                this.myEvent.finish_on = ''
+                this.myEvent.file_id = []
+                console.log("enregistrer")
+                swal("Enregistrement effectuer", "Votre évèenement est publié", "success");
             })
             .catch(function (error) {
                 console.log(error);

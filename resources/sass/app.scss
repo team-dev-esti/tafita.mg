@@ -4,3 +4,7 @@
 @import "./login.scss";
 @import "./register.scss";
 @import "./mooc.scss";
+
+.navbar.bordered{
+    border-bottom: 2px solid #ececec;
+}

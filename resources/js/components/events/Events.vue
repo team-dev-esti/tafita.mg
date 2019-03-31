@@ -1,12 +1,13 @@
 <template>
     <div>
-        <h2>Liste des concour organiser</h2>
+        <h2 class="title">Liste des concour organiser</h2>
         <ul>
             <li v-for="event in events"><router-link :to="'/home/events/' + event.id">{{ event.title }}</router-link></li>
         </ul>
     </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
     data() {
         return {
@@ -16,6 +17,7 @@ export default {
         }
     },
     mounted() {
+        console.log('Hellloooooo')
        axios.get('/current')
             .then( (response) => {
             // handle success

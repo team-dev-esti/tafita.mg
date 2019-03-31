@@ -31,8 +31,8 @@
                             <a href="{{ route('mooc.index')}}" class="navbar-item has-text-white">
                                 Mooc
                             </a>
-                            <a class="navbar-item has-text-white">
-                                Blog
+                            <a  href="{{ route('events.index')}}" class="navbar-item has-text-white">
+                                Evènement
                             </a>
                             
                                 @auth

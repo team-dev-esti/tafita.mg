@@ -1,30 +1,40 @@
 <template>
     <div>
-        <h1>{{event.title}}</h1>
+        <h3 class="title">{{event.title}}</h3>
         <router-link :to="'/home/events/'+event.id+'/selected'">Liste des admis</router-link>
         <p>liste etudiant inscrit</p>
-        <ul>
-            <li v-for="user in event.users" >
-                {{ user.name }} {{ user.lastname }}  
-                <button @click="findUser(user)">Voir</button>
-                <button @click="updateUserStatus(user,1)">ajouter</button>
-                <button @click="updateUserStatus(user,-1)">rejeter</button>
-            </li>
-        </ul>
-        <div>
-        <p>Nom: {{showUser.name}}</p>
-        <p>Prenom: {{showUser.lastname}}</p>
-        <p>Prenom: {{showUser.lastname}}</p>
-        <p>Email: {{showUser.email}}</p>
-        <p>Née le: {{showUser.birth}}</p>
-        <p>sexe: {{showUser.gender}}</p>
-        <ul>
-            <li v-for="userfile in showUser.files"><a target="_blank" :href="'/home/file/download/'+userfile.pivot.user_id+'/'+userfile.pivot.file_id">{{userfile.label}}</a></li>
-        </ul>
-        </div>
+        <div class="columns">
+            <div class="column is-5" style="height : 600px;overflow:auto;">
+                <a class="panel-block is" v-for="user in event.users" >
+                    <div class="columns">
+                        <div class="colomn is-3" style="padding:5px">
+                            <img style="border-radius:28%" :src="'https://api.adorable.io/avatars/25/'+user.name+'@adorable.png'" alt="">
+                        </div>
+                        <div class="column">
+                             {{ user.name }} {{ user.lastname }}
+                             <button class="button is-small is-info" @click="findUser(user)">Voir</button>
+                            <button class="button is-small is-success is-outlined" @click="updateUserStatus(user,1)">ajouter</button>
+                            <button class="button is-small is-danger is-outlined" @click="updateUserStatus(user,-1)">rejeter</button>
+                        </div>
+                    </div>   
+                </a>
+            </div>
+            <div class="column is-7 box">
+                <p>Nom: {{showUser.name}}</p>
+                <p>Prenom: {{showUser.lastname}}</p>
+                <p>Prenom: {{showUser.lastname}}</p>
+                <p>Email: {{showUser.email}}</p>
+                <p>Née le: {{showUser.birth}}</p>
+                <p>sexe: {{showUser.gender}}</p>
+                <ul>
+                    <li v-for="userfile in showUser.files"><a target="_blank" :href="'/home/file/download/'+userfile.pivot.user_id+'/'+userfile.pivot.file_id">{{userfile.label}}</a></li>
+                </ul>
+            </div>
+        </div> 
     </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
     data() {
         return {
