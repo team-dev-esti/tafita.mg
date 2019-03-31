@@ -9,7 +9,7 @@
             <nav class="navbar bordered">
                     <div class="container">
                         <div class="navbar-brand">
-                            <a class="navbar-item" href="">
+                            <a href="/" class="navbar-item" href="">
                                 <img src="{{asset('img/loho_header.png')}}" alt="Logo">
                             </a>
                             <span class="navbar-burger burger" data-target="navbarMenu">
@@ -20,8 +20,8 @@
                         </div>
                         <div id="navbarMenu" class="navbar-menu">
                             <div class="navbar-end">
-                                <a class="navbar-item is-active">
-                                    Home
+                                <a href="/" class="navbar-item is-active">
+                                    Acceuil
                                 </a>
                                 <a href="{{ route('mooc.index')}}" class="navbar-item">
                                     Mooc

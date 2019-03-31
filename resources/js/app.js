@@ -10,6 +10,8 @@
 window.Vue = require('vue');
 import VueRouter from 'vue-router'
 import routes from './routes'
+var Turbolinks = require("turbolinks")
+Turbolinks.start()
 Vue.use(VueRouter)
 
 

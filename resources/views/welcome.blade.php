@@ -25,8 +25,8 @@
                     </div>
                     <div id="navbarMenu" class="navbar-menu">
                         <div class="navbar-end">
-                            <a class="navbar-item is-active has-text-white">
-                                Home
+                            <a href="/" class="navbar-item is-active has-text-white">
+                                Acceuil
                             </a>
                             <a href="{{ route('mooc.index')}}" class="navbar-item has-text-white">
                                 Mooc
@@ -265,7 +265,7 @@
                                 <img src="{{asset('img/TAFITA.png')}}" alt="logo2">
                             </h1>
                             <h2 class="subtitle is-4">
-                                Travailler plus facilement.
+                                Propulser votre avenir en utilisant Tafita.mg
                             </h2>
                             <br>
                            
@@ -278,8 +278,7 @@
     <div class="box cta">
         <p class="has-text-centered">
             <span class="tag is-info">Beta 0.1.1</span>
-            tafita.mg version beta, Dds nouvelles fonctionnalités sont en cours de developpement ainsi que
-            la correction des eventuelle bug,
+            tafita.mg version beta, des nouvelles fonctionnalitées sont en cours de developpement,
             aider nous à améliorer l'application sur <a href="https://github.com/team-dev-esti/tafita.mg">GitHub</a>
 
         </p>
@@ -340,7 +339,7 @@
                 partager vos connaissance sur notre plateforme
             </p>
         </div>
-        <div class="sandbox">
+        {{-- <div class="sandbox">
             <div class="tile is-ancestor">
                 <div class="tile is-parent is-shady">
                     <article class="tile is-child notification is-white">
@@ -368,7 +367,7 @@
                 </div>
             </div>
 
-        </div>
+        </div> --}}
     </section>
     <section class="section hero is-light testimonials">
         <div class="columns">
