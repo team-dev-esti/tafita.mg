@@ -31,5 +31,5 @@ Route::get('/event/selected/{event}','Api\EventsController@showselected');
 // profile user
 Route::get('/users/{user}','Api\UsersController@show');
 
-Route::post('/event/notify','Api\EventController@notify');
+Route::post('/event/notify','Api\EventsController@notify');
 

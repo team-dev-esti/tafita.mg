@@ -23,10 +23,10 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 Route::get('/current', 'UsersController@current');
 Route::resource('events','EventsController')->only(['index','show']);
 Route::post('events/participate','EventsController@participate')->name('event.participate');
-Route::resource('mooc','MoocsController')->middleware('verified');
+Route::resource('mooc','MoocsController');
 
 Route::group(['prefix'=>'{mooc}'],function(){
-    Route::resource('chapter','ChaptersController')->middleware('verified');
+    Route::resource('chapter','ChaptersController');
 });
 
 Route::post('/home/file','HomeController@storefile')->name('file.store')->middleware('verified');
