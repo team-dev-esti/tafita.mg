@@ -64,7 +64,6 @@
                 {{ Form::close()}}
         </div>
         <br>
-        You are logged in!
           
 </div>
 @endsection

@@ -71,7 +71,7 @@ class EventsController extends Controller
             ['status',1]
         ])->get();
         foreach ($eventsUser as $key => $user) {
-            array_push($users_id,$user->id);
+            array_push($users_id,$user->user_id);
         }
         $users = User::whereIn('id',$users_id)->get();
         //$users = $event->users;
